@@ -89,3 +89,31 @@ DJANGO REST FRAMEWORK | EXPRESS | KOA -> FRAMEWORK TO BUILD REST APIS
             fields = ['id', 'name', 'document']
     ```
 
+### DJANGO TESTS
+* Create a new folder called `tests` to create a pattern, inside this folder, create a __init__.py file for Django to know that this is a module. After that, create a folder unit/integration/functional and again a __init__.oy file.
+
+    ```
+      def setUp(self):
+        """
+            This method will be executed before each test (beforeEach())
+        """
+        Student.objects.create(
+            name='Student Test',
+            document=123456,
+        )
+    ```
+Every tests need have a setUp function, this look like a beforeEach from nodejs tests.
+
+* Your test functions need start with test_ on name:
+
+    ```
+        def test_return_str(self):
+        """
+            This function checks whether the student model returns the correct name when it is instantiated
+        """
+        student = Student.objects.get(document=123456)
+        print(student)
+        self.assertEquals(student.__str__(), 'Student Test')
+    ```
+* To running test use de command bellow:
+    `python manage.py test app_name`
